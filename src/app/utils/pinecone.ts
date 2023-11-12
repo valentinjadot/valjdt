@@ -17,7 +17,10 @@ const getMatchesFromEmbeddings = async (
   namespace: string
 ): Promise<ScoredPineconeRecord<Metadata>[]> => {
   // Obtain a client for Pinecone
-  const pinecone = new Pinecone();
+  const pinecone = new Pinecone({
+    environment: "gcp-starter",
+    apiKey: process.env.PINECONE_API_KEY ?? "",
+  });
 
   const indexName: string = process.env.PINECONE_INDEX || "";
   if (indexName === "") {
