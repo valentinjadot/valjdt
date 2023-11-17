@@ -4,15 +4,16 @@ import { Canvas } from "@react-three/fiber";
 import { Sphere } from "@react-three/drei"; // Importing some basic geometries
 
 import styles from "./page.module.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { IPoint } from "@/types";
 
-const particlesData = [
-  { position: [1, 1, 1] },
-  { position: [-1, -1, -1] },
-  { position: [2, 0, -2] },
-];
+interface IParticle {
+  position: [number, number, number];
+}
 
 const Page = () => {
+  const [particles, setParticles] = useState<IParticle[]>([]);
+
   async function fetchPoints() {
     const response = await fetch("/api/three-d-points", {
       method: "GET",
@@ -20,13 +21,20 @@ const Page = () => {
 
     const { success, points } = await response.json();
 
-    if (success) {
-      console.log(points);
+    if (!(success && points.length > 0)) {
+      throw new Error("Failed to fetch points");
     }
+
+    return points as IPoint[];
   }
 
   useEffect(() => {
-    void fetchPoints();
+    async function loadData() {
+      const points = await fetchPoints();
+      setParticles(points.map((p) => ({ position: [p.x, p.y, p.z] })));
+    }
+
+    void loadData();
   }, []);
 
   return (
@@ -35,11 +43,11 @@ const Page = () => {
         shadows
         className={styles.canvas}
         camera={{
-          position: [-6, 7, 7],
+          position: [-10, 17, 17],
         }}
       >
-        {particlesData.map((particle, index) => (
-          <Sphere key={index} position={particle.position} args={[0.1, 16, 16]}>
+        {particles.map((particle, index) => (
+          <Sphere key={index} position={particle.position} args={[0.2, 15, 15]}>
             <meshPhysicalMaterial color={"white"} />
           </Sphere>
         ))}

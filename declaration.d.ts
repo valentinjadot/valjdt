@@ -1,2 +1,2 @@
 declare module "*.module.css";
-declare module "tsne-js";
+declare module "@saehrimnir/druidjs";

@@ -4,3 +4,9 @@ export type Metadata = {
   chunk: string;
   hash: string;
 };
+
+export type IPoint = {
+  x: number;
+  y: number;
+  z: number;
+};
