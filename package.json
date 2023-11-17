@@ -11,6 +11,8 @@
   "dependencies": {
     "@pinecone-database/doc-splitter": "^0.0.1",
     "@pinecone-database/pinecone": "^1.1.2",
+    "@react-three/drei": "^9.88.16",
+    "@react-three/fiber": "^8.15.11",
     "@t3-oss/env-nextjs": "^0.7.1",
     "ai": "^2.2.22",
     "md5": "^2.3.0",
@@ -18,6 +20,8 @@
     "openai-edge": "^1.2.2",
     "react": "^18",
     "react-dom": "^18",
+    "three": "^0.158.0",
+    "tsne-js": "^1.0.3",
     "zod": "^3.22.4"
   },
   "devDependencies": {
