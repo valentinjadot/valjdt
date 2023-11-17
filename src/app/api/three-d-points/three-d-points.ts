@@ -3,6 +3,7 @@ import { connectToPinecone } from "@/utils/connectToPinecone";
 import { ScoredPineconeRecord } from "@pinecone-database/pinecone";
 import { DEFAULT_VECTOR } from "./constants";
 import * as druid from "@saehrimnir/druidjs";
+import { normalizePoint } from "./normalize";
 
 type ThreeDCoordinatesList = number[];
 
@@ -20,7 +21,7 @@ export const threeDPoints = async (): Promise<IPoint[]> => {
     allVectors
   );
 
-  return points;
+  return normalizePoint(points);
 };
 
 const generatePoints = (threeDCoordinatesList: ThreeDCoordinatesList) => {
@@ -56,16 +57,17 @@ const getAllVectors = async (): Promise<ScoredPineconeRecord<Metadata>[]> => {
     includeMetadata: true,
     includeValues: true,
   });
+
+  console.log(queryResult.matches);
+
   return queryResult.matches || [];
 };
 
 const reduceDimensionality = (vectorValues: number[][]) => {
   let matrix = druid.Matrix.from(vectorValues);
 
-  const dr = new druid.TSNE(matrix, {
+  const dr = new druid.PCA(matrix, {
     d: 3,
-    perplexity: 50,
-    seed: 1536,
   }).transform();
 
   const validReducedData =

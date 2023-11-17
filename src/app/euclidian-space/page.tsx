@@ -1,18 +1,22 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { Sphere, Text } from "@react-three/drei"; // Importing some basic geometries
+import { CameraControls, Sphere, Text } from "@react-three/drei"; // Importing some basic geometries
 
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import { IPoint } from "@/types";
 
+const MULTIPLICATOR = 20;
+
 const Page = () => {
+  const [loading, setLoading] = useState(true);
   const [points, setPoints] = useState<IPoint[]>([]);
 
   async function fetchPoints() {
     const response = await fetch("/api/three-d-points", {
       method: "GET",
+      next: { revalidate: 4000 },
     });
 
     const { success, points } = await response.json();
@@ -28,11 +32,16 @@ const Page = () => {
     async function loadData() {
       const points = await fetchPoints();
       setPoints(points);
+      setLoading(false);
       console.log(points);
     }
 
     void loadData();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className={styles.scene}>
@@ -40,21 +49,40 @@ const Page = () => {
         shadows
         className={styles.canvas}
         camera={{
-          position: [-10, 17, 17],
+          position: [-5, 15, 25],
         }}
       >
+        <CameraControls />
         {points.map((point, index) => (
           <group key={index}>
             <Sphere
               key={index}
-              position={[point.x, point.y, point.z]}
+              position={[
+                point.x * MULTIPLICATOR,
+                point.y * MULTIPLICATOR,
+                point.z * MULTIPLICATOR,
+              ]}
               args={[0.2, 15, 15]}
             >
-              <meshPhysicalMaterial color={"white"} />
+              <meshPhysicalMaterial
+                color={
+                  point.metadata.text.toLowerCase().match("boire")
+                    ? "hotpink"
+                    : "white"
+                }
+              />
             </Sphere>
             <Text
-              position={[point.x + 0.5, point.y, point.z]}
-              color={"white"}
+              position={[
+                point.x * MULTIPLICATOR + 0.5,
+                point.y * MULTIPLICATOR,
+                point.z * MULTIPLICATOR,
+              ]}
+              color={
+                point.metadata.text.toLowerCase().match("boire")
+                  ? "hotpink"
+                  : "white"
+              }
               fontSize={1}
             >
               {point.metadata.text.substring(0, 10)}
