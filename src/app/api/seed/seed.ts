@@ -2,7 +2,6 @@ import { getEmbeddings } from "@/utils/embeddings";
 import {
   Document,
   MarkdownTextSplitter,
-  RecursiveCharacterTextSplitter,
 } from "@pinecone-database/doc-splitter";
 import { Pinecone, PineconeRecord } from "@pinecone-database/pinecone";
 import { chunkedUpsert } from "../../utils/chunkedUpsert";
@@ -52,31 +51,31 @@ async function embedDocument(doc: Document): Promise<PineconeRecord> {
   }
 }
 
-async function prepareDocument(pageContent: string): Promise<Document[]> {
+async function prepareDocument(content: string): Promise<Document[]> {
   // Get the content of the page
 
+  const pageContents = splitByMarkdownHeader(content);
+
   // Split the documents using the provided splitter
-  const docs = await new MarkdownTextSplitter({}).splitDocuments([
-    new Document({
-      pageContent,
-      metadata: {
-        // Truncate the text to a maximum byte length
-        text: truncateStringByBytes(pageContent, 36000),
-      },
-    }),
-  ]);
+  const docs = pageContents.map(
+    (pageContent) =>
+      new Document({
+        pageContent,
+        metadata: {
+          text: truncateStringByBytes(pageContent, 36000),
+          hash: md5(pageContent),
+        },
+      })
+  );
+
+  console.log(docs);
 
   // Map over the documents and add a hash to their metadata
-  return docs.map((doc: Document) => {
-    return {
-      pageContent: doc.pageContent,
-      metadata: {
-        ...doc.metadata,
-        // Create a hash of the document content
-        hash: md5(doc.pageContent),
-      },
-    };
-  });
+  return docs;
+}
+
+function splitByMarkdownHeader(content: string): string[] {
+  return content.split(/(?=^#)/gm);
 }
 
 export default seed;
