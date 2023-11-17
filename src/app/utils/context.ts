@@ -1,12 +1,7 @@
 import { ScoredVector } from "@pinecone-database/pinecone";
-import { getMatchesFromEmbeddings } from "./pinecone";
+import { getMatchesFromEmbeddings } from "./getMatchesFromEmbeddings";
 import { getEmbeddings } from "./embeddings";
-
-export type Metadata = {
-  url: string;
-  text: string;
-  chunk: string;
-};
+import { Metadata } from "@/types";
 
 // The function `getContext` is used to retrieve the context of a given message
 export const getContext = async (

@@ -9,36 +9,14 @@ import { chunkedUpsert } from "../../utils/chunkedUpsert";
 import md5 from "md5";
 
 import { truncateStringByBytes } from "@/utils/truncateString";
+import { connectToPinecone } from "@/utils/connectToPinecone";
 
 async function seed(seedContent: string) {
   try {
-    const pinecone = new Pinecone({
-      environment: "gcp-starter",
-      apiKey: process.env.PINECONE_API_KEY ?? "",
-    });
-
-    const indexName = process.env.PINECONE_INDEX;
-    if (indexName === undefined) {
-      throw new Error("Env variable PINECONE_INDEX is undefined");
-    }
-
-    const indexList = await pinecone.listIndexes();
-
-    const indexExists = indexList.some((index) => index.name === indexName);
-
-    if (!indexExists) {
-      throw new Error("PINECONE_INDEX does not exist");
-    }
-
-    const index = pinecone.Index(indexName);
-
     const documents = await prepareDocument(seedContent);
-
-    // Get the vector embeddings for the documents
     const vectors = await Promise.all(documents.flat().map(embedDocument));
-
-    // Upsert vectors into the Pinecone index
-    await chunkedUpsert(index!, vectors, "", 10);
+    const index = await connectToPinecone();
+    await chunkedUpsert(index, vectors, "", 10);
 
     // Return the first document
     return documents[0];
