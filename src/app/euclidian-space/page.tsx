@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { Sphere } from "@react-three/drei"; // Importing some basic geometries
+import { Sphere, Text } from "@react-three/drei"; // Importing some basic geometries
 
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
@@ -44,14 +44,24 @@ const Page = () => {
         }}
       >
         {points.map((point, index) => (
-          <Sphere
-            key={index}
-            position={[point.x, point.y, point.z]}
-            args={[0.2, 15, 15]}
-          >
-            <meshPhysicalMaterial color={"white"} />
-          </Sphere>
+          <group key={index}>
+            <Sphere
+              key={index}
+              position={[point.x, point.y, point.z]}
+              args={[0.2, 15, 15]}
+            >
+              <meshPhysicalMaterial color={"white"} />
+            </Sphere>
+            <Text
+              position={[point.x + 0.5, point.y, point.z]}
+              color={"white"}
+              fontSize={1}
+            >
+              {point.metadata.text.substring(0, 10)}
+            </Text>
+          </group>
         ))}
+
         <ambientLight color={"white"} intensity={3} />
       </Canvas>
     </div>
