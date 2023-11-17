@@ -19,9 +19,21 @@ export default function Page() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="text-black">
-      <input type="text" name="information" className="text-black" />
-      <button type="submit">Submit</button>
+    <form
+      onSubmit={onSubmit}
+      className="text-black p-11 flex flex-col justify-start gap-11"
+      style={{ height: "100vh" }}
+    >
+      <textarea
+        name="information"
+        cols={40}
+        rows={5}
+        className="h-2/6"
+      ></textarea>
+
+      <button type="submit" className="bg-white">
+        Submit
+      </button>
     </form>
   );
 }
