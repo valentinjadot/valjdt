@@ -7,12 +7,8 @@ import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import { IPoint } from "@/types";
 
-interface IParticle {
-  position: [number, number, number];
-}
-
 const Page = () => {
-  const [particles, setParticles] = useState<IParticle[]>([]);
+  const [points, setPoints] = useState<IPoint[]>([]);
 
   async function fetchPoints() {
     const response = await fetch("/api/three-d-points", {
@@ -31,7 +27,8 @@ const Page = () => {
   useEffect(() => {
     async function loadData() {
       const points = await fetchPoints();
-      setParticles(points.map((p) => ({ position: [p.x, p.y, p.z] })));
+      setPoints(points);
+      console.log(points);
     }
 
     void loadData();
@@ -46,8 +43,12 @@ const Page = () => {
           position: [-10, 17, 17],
         }}
       >
-        {particles.map((particle, index) => (
-          <Sphere key={index} position={particle.position} args={[0.2, 15, 15]}>
+        {points.map((point, index) => (
+          <Sphere
+            key={index}
+            position={[point.x, point.y, point.z]}
+            args={[0.2, 15, 15]}
+          >
             <meshPhysicalMaterial color={"white"} />
           </Sphere>
         ))}

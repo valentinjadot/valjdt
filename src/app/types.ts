@@ -9,4 +9,5 @@ export type IPoint = {
   x: number;
   y: number;
   z: number;
+  metadata: Metadata;
 };

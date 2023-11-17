@@ -4,38 +4,47 @@ import { ScoredPineconeRecord } from "@pinecone-database/pinecone";
 import { DEFAULT_VECTOR } from "./constants";
 import * as druid from "@saehrimnir/druidjs";
 
-interface IHashOfCoordinates {
-  [key: number]: number;
-}
+type ThreeDCoordinatesList = number[];
 
 const EVERYTHING = 1000;
 
 export const threeDPoints = async (): Promise<IPoint[]> => {
-  const allVectors = await getAllVectors();
+  const allVectors: ScoredPineconeRecord<Metadata>[] = await getAllVectors();
 
-  const hashOfCoordinates = reduceDimensionality(
+  const coordinatesList: ThreeDCoordinatesList = reduceDimensionality(
     allVectors.map((vector) => vector.values)
   );
 
-  const points = generatePoints(hashOfCoordinates);
+  const points = addMetadataToPoints(
+    generatePoints(coordinatesList),
+    allVectors
+  );
 
   return points;
 };
 
-const generatePoints = (hashOfCoordinates: IHashOfCoordinates) => {
-  let points: IPoint[] = [];
-  for (let i = 0; i < Object.keys(hashOfCoordinates).length; i += 3) {
-    const x = points[i] || 0;
-    const y = points[i + 1] || 0;
-    const z = points[i + 2] || 0;
-
+const generatePoints = (threeDCoordinatesList: ThreeDCoordinatesList) => {
+  let points: Omit<IPoint, "metadata">[] = [];
+  for (let i = 0; i < threeDCoordinatesList.length; i += 3) {
     points.push({
-      x: hashOfCoordinates[i] || 0,
-      y: hashOfCoordinates[i + 1] || 0,
-      z: hashOfCoordinates[i + 2] || 0,
+      x: threeDCoordinatesList[i] || 0,
+      y: threeDCoordinatesList[i + 1] || 0,
+      z: threeDCoordinatesList[i + 2] || 0,
     });
   }
   return points;
+};
+
+const addMetadataToPoints = (
+  points: Omit<IPoint, "metadata">[],
+  allVectors: ScoredPineconeRecord<Metadata>[]
+): IPoint[] => {
+  return points.map((point, index) => {
+    return {
+      ...point,
+      metadata: allVectors[index].metadata as Metadata,
+    };
+  });
 };
 
 const getAllVectors = async (): Promise<ScoredPineconeRecord<Metadata>[]> => {
@@ -66,5 +75,5 @@ const reduceDimensionality = (vectorValues: number[][]) => {
 
   if (!validReducedData) throw new Error("Dimensionality reduction failed");
 
-  return dr._data as IHashOfCoordinates;
+  return Object.values(dr._data) as ThreeDCoordinatesList;
 };
