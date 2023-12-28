@@ -14,6 +14,10 @@ export const getContext = async (
   // Get the embeddings of the input message
   const embedding = await getEmbeddings(message);
 
+  if (!embedding) {
+    throw new Error("Error getting embeddings");
+  }
+
   // Retrieve the matches for the embeddings from the specified namespace
   const matches = await getMatchesFromEmbeddings(embedding, topK);
 

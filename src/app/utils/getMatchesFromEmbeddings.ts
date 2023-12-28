@@ -13,19 +13,13 @@ const getMatchesFromEmbeddings = async (
   // Obtain a client for Pinecone
   const index = await connectToPinecone();
 
-  try {
-    // Query the index with the defined request
-    const queryResult = await index.query({
-      vector: embeddings,
-      topK,
-      includeMetadata: true,
-    });
-    return queryResult.matches || [];
-  } catch (e) {
-    // Log the error and throw it
-    console.log("Error querying embeddings: ", e);
-    throw new Error(`Error querying embeddings: ${e}`);
-  }
+  // Query the index with the defined request
+  const queryResult = await index.query({
+    vector: embeddings,
+    topK,
+    includeMetadata: true,
+  });
+  return queryResult.matches || [];
 };
 
 export { getMatchesFromEmbeddings };
