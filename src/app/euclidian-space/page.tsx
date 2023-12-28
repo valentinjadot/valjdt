@@ -16,7 +16,7 @@ const Page = () => {
   async function fetchPoints() {
     const response = await fetch("/api/three-d-points", {
       method: "GET",
-      next: { revalidate: 4000 },
+      cache: "no-store",
     });
 
     const { success, points } = await response.json();
