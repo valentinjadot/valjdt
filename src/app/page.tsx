@@ -1,5 +1,6 @@
 "use client";
-import Header from "@/components/Header";
+
+import Canvas from "@/components/Canvas/index";
 import Chat from "@/components/Chat";
 import { useChat } from "ai/react";
 
@@ -13,6 +14,7 @@ const Page: React.FC = () => {
         height: "100%",
       }}
     >
+      <Canvas />
       <Chat
         input={input}
         handleInputChange={handleInputChange}
