@@ -3,6 +3,7 @@
 import Canvas from "@/components/Canvas/index";
 import Chat from "@/components/Chat";
 import { useChat } from "ai/react";
+import { CAMERA_CHECKPOINTS } from "./constants";
 
 const Page: React.FC = () => {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
@@ -14,7 +15,7 @@ const Page: React.FC = () => {
         height: "100%",
       }}
     >
-      <Canvas />
+      <Canvas cameraCheckpoints={CAMERA_CHECKPOINTS} />
       <Chat
         input={input}
         handleInputChange={handleInputChange}

@@ -6,7 +6,15 @@ import * as THREE from "three";
 extend({ PLYLoader });
 
 function Model(): JSX.Element {
-  const geometry = useLoader(PLYLoader, "val.ply");
+  const geometry = useLoader(
+    PLYLoader,
+    "val.ply",
+    undefined,
+    (progressEvent) => {
+      console.log(Math.floor(progressEvent.loaded / progressEvent.total) * 100);
+    }
+  );
+
   const meshRef = useRef<THREE.Points>(null);
 
   useEffect(() => {

@@ -1,11 +1,49 @@
-import React from "react";
+import React, { Suspense, useRef, useState } from "react";
 import { Canvas as ThreeCanvas, extend } from "@react-three/fiber";
 import { PLYLoader } from "three/examples/jsm/Addons.js";
 import Universe from "./Universe";
+import _ from "lodash";
+import { ICameraCheckpoint } from "@/types";
+import { Html, useProgress } from "@react-three/drei";
 
 extend({ PLYLoader });
 
-function Canvas(): JSX.Element {
+interface IProps {
+  cameraCheckpoints: ICameraCheckpoint[];
+}
+
+function Loader() {
+  return <Html center>Loading...</Html>;
+}
+
+function Canvas(props: IProps): JSX.Element {
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
+
+  const inactivityTimer = useRef<NodeJS.Timeout | null>(null);
+
+  const startInactivityTimer = () => {
+    inactivityTimer.current = setTimeout(() => {
+      setIsUserInteracting(false);
+    }, 300);
+  };
+
+  const stopInactivityTimer = () => {
+    if (inactivityTimer.current != null) {
+      clearTimeout(inactivityTimer.current);
+    }
+  };
+
+  const handleUserInteraction = () => {
+    setIsUserInteracting(true);
+
+    stopInactivityTimer();
+    startInactivityTimer();
+  };
+
+  const getNextCheckpoint = () => {
+    return _.sample(props.cameraCheckpoints)!;
+  };
+
   return (
     <ThreeCanvas
       style={{
@@ -20,10 +58,21 @@ function Canvas(): JSX.Element {
         fov: 35,
         near: 0.1,
         far: 1000,
-        position: [-3.100072314707832, -8.135709112107289, -9.249370277387756],
+        position: getNextCheckpoint().position,
+      }}
+      onPointerDown={() => {
+        handleUserInteraction();
+      }}
+      onWheel={() => {
+        handleUserInteraction();
       }}
     >
-      <Universe />
+      <Suspense fallback={<Loader />}>
+        <Universe
+          getNextCheckpoint={getNextCheckpoint}
+          isUserInteracting={isUserInteracting}
+        />
+      </Suspense>
     </ThreeCanvas>
   );
 }

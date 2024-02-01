@@ -1,13 +1,4 @@
-export type Metadata = {
-  url: string;
-  text: string;
-  chunk: string;
-  hash: string;
-};
-
-export type IPoint = {
-  x: number;
-  y: number;
-  z: number;
-  metadata: Metadata;
+export type ICameraCheckpoint = {
+  position: THREE.Vector3;
+  target: THREE.Vector3;
 };
