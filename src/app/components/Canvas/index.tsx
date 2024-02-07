@@ -13,7 +13,12 @@ interface IProps {
 }
 
 function Loader() {
-  return <Html center>Loading...</Html>;
+  return (
+    <Html center style={{ width: 500 }}>
+      Hi! Welcome. This a draft project. Please wait for the 3D model to load.
+      It may take a while.
+    </Html>
+  );
 }
 
 function Canvas(props: IProps): JSX.Element {

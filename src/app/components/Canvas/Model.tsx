@@ -8,7 +8,7 @@ extend({ PLYLoader });
 function Model(): JSX.Element {
   const geometry = useLoader(
     PLYLoader,
-    "val.ply",
+    "val-compressed.ply",
     undefined,
     (progressEvent) => {
       console.log(Math.floor(progressEvent.loaded / progressEvent.total) * 100);
