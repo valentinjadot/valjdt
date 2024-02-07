@@ -14,7 +14,10 @@ export const connectToPineconeIndex = async () => {
     throw new Error(`Index ${env.PINECONE_INDEX_NAME} does not exist`);
   }
 
-  const index = pinecone.Index<Metadata>(env.PINECONE_INDEX_NAME);
+  const index = pinecone.index<Metadata>(env.PINECONE_INDEX_NAME);
+
+  console.log("index is");
+  console.log(index);
 
   return index;
 };
