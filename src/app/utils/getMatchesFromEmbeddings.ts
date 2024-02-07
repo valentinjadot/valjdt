@@ -1,8 +1,6 @@
 import { Metadata } from "@/types";
-import { connectToPinecone } from "./connectToPinecone";
-import {
-  type ScoredPineconeRecord,
-} from "@pinecone-database/pinecone";
+import { connectToPineconeIndex } from "./connectToPineconeIndex";
+import { type ScoredPineconeRecord } from "@pinecone-database/pinecone";
 
 // The function `getMatchesFromEmbeddings` is used to retrieve matches for the given embeddings
 const getMatchesFromEmbeddings = async (
@@ -10,7 +8,7 @@ const getMatchesFromEmbeddings = async (
   topK: number
 ): Promise<ScoredPineconeRecord<Metadata>[]> => {
   // Obtain a client for Pinecone
-  const index = await connectToPinecone();
+  const index = await connectToPineconeIndex();
 
   // Query the index with the defined request
   const queryResult = await index.query({

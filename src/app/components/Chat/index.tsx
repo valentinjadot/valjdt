@@ -1,17 +1,13 @@
 // Chat.tsx
 
-import React, { ChangeEvent } from "react";
+import React from "react";
 import Messages from "./Messages";
 import { Message } from "ai/react";
-import { ChatRequestOptions } from "ai";
 
 interface Chat {
   input: string;
-  handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleMessageSubmit: (
-    e: React.FormEvent<HTMLFormElement>,
-    chatRequestOptions?: ChatRequestOptions
-  ) => void;
+  handleInputChange: () => void;
+  handleMessageSubmit: () => void;
   messages: Message[];
 }
 

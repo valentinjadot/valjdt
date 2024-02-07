@@ -1,19 +1,27 @@
 import { getEmbeddings } from "@/utils/embeddings";
-import {
-  Document,
-} from "@pinecone-database/doc-splitter";
+import { Document } from "@pinecone-database/doc-splitter";
 import { PineconeRecord } from "@pinecone-database/pinecone";
 import { chunkedUpsert } from "../../utils/chunkedUpsert";
 import md5 from "md5";
 
 import { truncateStringByBytes } from "@/utils/truncateString";
-import { connectToPinecone } from "@/utils/connectToPinecone";
+import { connectToPineconeIndex } from "@/utils/connectToPineconeIndex";
 
 async function seed(seedContent: string) {
   try {
+    const index = await connectToPineconeIndex();
+    await index.deleteAll();
+
+    const stats = await index.describeIndexStats();
+
+    console.log("Index stats:", stats);
+
+    if (stats.totalRecordCount != 0) {
+      throw new Error("Index was not emptied properly.");
+    }
+
     const documents = await prepareDocument(seedContent);
     const vectors = await Promise.all(documents.flat().map(embedDocument));
-    const index = await connectToPinecone();
     await chunkedUpsert(index, vectors, "", 10);
 
     // Return the first document

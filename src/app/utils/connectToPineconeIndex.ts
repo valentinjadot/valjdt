@@ -2,7 +2,7 @@ import { Pinecone } from "@pinecone-database/pinecone";
 import { env } from "@/env.mjs";
 import { Metadata } from "@/types";
 
-export const connectToPinecone = async () => {
+export const connectToPineconeIndex = async () => {
   const pinecone = new Pinecone({
     environment: env.PINECONE_ENVIRONMENT,
     apiKey: env.PINECONE_API_KEY,

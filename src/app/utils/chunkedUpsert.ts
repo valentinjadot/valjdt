@@ -17,7 +17,7 @@ export const chunkedUpsert = async (
 
   // Upsert each chunk of vectors into the index
   await Promise.allSettled(
-    chunks.map(async (chunk) => {
+    chunks.map(async () => {
       try {
         await index.namespace(namespace).upsert(vectors);
       } catch (e) {
