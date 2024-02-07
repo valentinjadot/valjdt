@@ -4,7 +4,7 @@ import { PLYLoader } from "three/examples/jsm/Addons.js";
 import Universe from "./Universe";
 import _ from "lodash";
 import { ICameraCheckpoint } from "@/types";
-import { Html, useProgress } from "@react-three/drei";
+import { Html } from "@react-three/drei";
 
 extend({ PLYLoader });
 

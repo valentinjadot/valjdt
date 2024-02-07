@@ -1,9 +1,8 @@
 import { getEmbeddings } from "@/utils/embeddings";
 import {
   Document,
-  MarkdownTextSplitter,
 } from "@pinecone-database/doc-splitter";
-import { Pinecone, PineconeRecord } from "@pinecone-database/pinecone";
+import { PineconeRecord } from "@pinecone-database/pinecone";
 import { chunkedUpsert } from "../../utils/chunkedUpsert";
 import md5 from "md5";
 

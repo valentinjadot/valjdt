@@ -1,16 +1,13 @@
-import React, { RefObject, use, useEffect, useRef, useState } from "react";
-import { Camera, useFrame, useThree } from "@react-three/fiber";
+import React, { useRef } from "react";
+import { Camera, useFrame } from "@react-three/fiber";
 import Model from "./Model";
-
-import _ from "lodash";
 import {
   CAMERA_LERPING_SPEED,
-  CAMERA_SLOW_DRIFT,
   JUMP_TO_NEXT_CHECKPOINT_PROBABILITY,
 } from "@/constants";
 import { ICameraCheckpoint } from "@/types";
-import { OrbitControls, OrbitControlsProps } from "@react-three/drei";
-import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
+import { OrbitControls } from "@react-three/drei";
+
 import { Vector3 } from "three";
 
 interface IProps {
@@ -54,7 +51,7 @@ function Universe(props: IProps): JSX.Element {
       <Model />
       <OrbitControls
         ref={orbitRef}
-        zoomSpeed={0.008}
+        zoomSpeed={0.009}
         enableZoom
         enablePan
         enableDamping

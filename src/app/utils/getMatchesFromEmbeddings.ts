@@ -1,7 +1,6 @@
 import { Metadata } from "@/types";
 import { connectToPinecone } from "./connectToPinecone";
 import {
-  Pinecone,
   type ScoredPineconeRecord,
 } from "@pinecone-database/pinecone";
 

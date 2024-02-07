@@ -1,4 +1,3 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 import { threeDPoints } from "./three-d-points";
 import { IPoint } from "@/types";
