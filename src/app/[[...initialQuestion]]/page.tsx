@@ -36,7 +36,7 @@ export default function Page({
         input={input}
         handleInputChange={handleInputChange}
         handleMessageSubmit={handleSubmit}
-        messages={messages.slice(-3)}
+        messages={messages}
         hasInitialQuestion={!!params.initialQuestion}
       />
     </div>
