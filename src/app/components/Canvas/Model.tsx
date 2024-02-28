@@ -8,7 +8,7 @@ extend({ PLYLoader });
 function Model(): JSX.Element {
   const geometry = useLoader(
     PLYLoader,
-    "val-compressed.ply",
+    "val-11mb.ply",
     undefined,
     (progressEvent) => {
       console.log(Math.floor(progressEvent.loaded / progressEvent.total) * 100);
@@ -25,7 +25,7 @@ function Model(): JSX.Element {
 
       const material = new THREE.PointsMaterial({
         vertexColors: true,
-        size: 0.01,
+        size: 0.015,
       });
 
       material.color = new THREE.Color().fromArray(colors);
