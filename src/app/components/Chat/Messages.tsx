@@ -1,8 +1,13 @@
 import { Message } from "ai";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Messages({ messages }: { messages: Message[] }) {
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   return (
     <div className=" border-gray-600 p-6 rounded-lg overflow-y-scroll pb-20 flex-grow flex flex-col font-mono text-white">
       {messages.map((msg, index) => (
