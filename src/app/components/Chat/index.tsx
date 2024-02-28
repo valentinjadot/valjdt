@@ -37,6 +37,7 @@ const Chat: React.FC<Chat> = ({
             value={input}
             onChange={handleInputChange}
             placeholder="Any question you would like to ask Valentin?"
+            autoFocus
           />
 
           <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-400">

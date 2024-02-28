@@ -8,7 +8,7 @@ Valentin holds a Master of Laws (magna cum laude) and a Master in Economics (mag
 
 # Professional Background
 
-As a freelancer specializing in creative development, Valentin's career includes roles at Nagelmackers, Financial Services and Market Authority, and Fintual, a Y Combinator fintech.
+As a freelancer specializing in creative development, Valentin's career includes roles at Nagelmackers, Financial Services and Market Authority, and Fintual, a Y Combinator fintech startup and one of the top startups of Latin America.
 
 At Nagelmackers, he served as a Consultant for the General Management Office, contributing to the digital agenda and the establishment of a bank division in Hong Kong.
 
