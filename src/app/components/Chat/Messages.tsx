@@ -10,11 +10,14 @@ export default function Messages({ messages }: { messages: Message[] }) {
           key={index}
           className={`my-2 p-3 rounded hover:shadow-lg transition-shadow duration-200 flex items-center `}
         >
-          <div className="rounded-tl-lgp-2">
-            {msg.role === "assistant" ? "⚆" : "❂"}
-          </div>
+          <div className="rounded-tl-lgp-2"></div>
           <div className="ml-2 flex items-center text-gray-200 mix-blend-difference font-extralight">
-            {msg.content}
+            <div>
+              <span className="font-black	inline">
+                {msg.role === "user" ? "❂" : "⚆"}
+              </span>{" "}
+              {msg.content}
+            </div>
           </div>
         </div>
       ))}

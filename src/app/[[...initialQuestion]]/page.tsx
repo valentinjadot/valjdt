@@ -20,7 +20,7 @@ export default function Page({
 }: {
   params: { initialQuestion?: string[] };
 }) {
-  const { messages, input, handleInputChange, handleSubmit, append } = useChat({
+  const { messages, input, handleInputChange, handleSubmit } = useChat({
     initialInput: formatInitialQuestion(params.initialQuestion),
   });
 
@@ -36,7 +36,8 @@ export default function Page({
         input={input}
         handleInputChange={handleInputChange}
         handleMessageSubmit={handleSubmit}
-        messages={messages}
+        messages={messages.slice(-3)}
+        hasInitialQuestion={!!params.initialQuestion}
       />
     </div>
   );

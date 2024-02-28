@@ -7,7 +7,7 @@ import { Metadata } from "@/types";
 export const getContext = async (
   message: string,
   topK: number = 3,
-  maxTokens = 3000,
+  maxTokens = 10000,
   minScore = 0.7,
   getOnlyText = true
 ): Promise<string | ScoredVector[]> => {

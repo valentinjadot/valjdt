@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { ICameraCheckpoint } from "./types";
 
-export const JUMP_TO_NEXT_CHECKPOINT_PROBABILITY = 0.0005;
+export const JUMP_TO_NEXT_CHECKPOINT_PROBABILITY = 0.0008;
 export const CAMERA_LERPING_SPEED = 0.005;
 export const CAMERA_SLOW_DRIFT = new THREE.Vector3(0, 0.00005, 0.000005);
 
