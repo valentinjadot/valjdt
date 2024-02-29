@@ -4,6 +4,7 @@ import Canvas from "@/components/Canvas/index";
 import Chat from "@/components/Chat";
 import { useChat } from "ai/react";
 import { CAMERA_CHECKPOINTS } from "../constants";
+import { useCurrentUser } from "@/contexts/CurrentUserContext";
 
 const formatInitialQuestion = (initialQuestion: string[] | undefined) => {
   if (!initialQuestion) return "";
@@ -23,6 +24,10 @@ export default function Page({
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     initialInput: formatInitialQuestion(params.initialQuestion),
   });
+
+  const currentUser = useCurrentUser();
+
+  console.log(currentUser);
 
   return (
     <div
