@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     description: "creative coder",
     images: [
       {
-        url: "https://valentinjadot.com/og-image.png",
+        url: "https://valentinjadot.com/og-image.jpg",
         width: 1190,
         height: 1000,
         alt: "Valentin Jadot",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    images: "https://valentinjadot.com/og-image.png",
+    images: "https://valentinjadot.com/og-image.jpg",
     card: "summary_large_image",
     site: "https://valentinjadot.com",
     creator: "@jadorowski",
