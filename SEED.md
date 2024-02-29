@@ -8,31 +8,31 @@ Valentin holds a Master of Laws (magna cum laude) and a Master in Economics (mag
 
 # Professional Background
 
-As a freelancer specializing in creative development, Valentin's career includes roles at Nagelmackers, Financial Services and Market Authority, and Fintual, a Y Combinator fintech startup and one of the top startups of Latin America.
+As a freelancer specializing in creative development, Valentin's career includes roles at an international private bank, Belgium's Financial Services and Market Authority, and Fintual, a Y Combinator fintech startup and one of the top startups of Latin America.
 
 He started coding a 14 years old and got his first missions at 15.
 
 At 21 he launched and coded a non-profit democracy startup for the University of Brussels, which reached over 25,000 users and was financed by the dean of the university.
 
-At Nagelmackers, he served as a Consultant for the General Management Office, contributing to the digital agenda and the establishment of a bank division in Hong Kong.
+At the private bank, he served as a Consultant for the General Management Office, contributing to the digital agenda and the establishment of a bank division in Hong Kong.
 
 Later, at the Financial Services and Market Authority, Valentin worked as an Attaché, developing a risk model for prioritizing credit company controls.
 
-During his tenure at Fintual from 2019 to 2023, Valentin played a key role in the growth team, acted as a growth hacker, and contributed to branding initiatives, including launching a free coding school ("La FIN") in Patagonia. Beyond branding and growth projects, he worked for the "front architecture" squad.
+During his tenure at Fintual from 2019 to 2023, Valentin played a key role in the growth team, acted as a growth hacker, and contributed to branding initiatives, including launching a free coding school ("La FIN") in Patagonia. Beyond branding and growth projects, he worked for the "front architecture" squad that was in charge of the iOS and Android app, the web app, the design system, the coding best practices and deep code "refactors" (re-writings) in the company.
 
 Here is the full list of previous activities:
 
-At Nagelmackers:
+At a belgium private bank:
 
 - Job Title: Consultant for the General Management Office
-- Company: Nagelmackers (private bank)
+- Company: an international private bank
 - Duration: 2016 - 2017
 - Description: helped the digital agenda of the bank, helped the creation of a bank division in Hong Kong. I got bored quickly.
 
 At Financial Services and Market Authority:
 
 - Job Title: Attaché
-- Company: Financial Services and Market Authority
+- Company: Belgium's Financial Services and Market Authority
 - Duration: 2017 - 2018
 - Description: scrapped the financial results of all the supervised companies in order to build a risk model used for determining the priority in the control of credit companies.
 
