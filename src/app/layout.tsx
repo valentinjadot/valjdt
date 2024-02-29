@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 
 const inter = Inter({ subsets: ["latin"], preload: true });
 
@@ -36,6 +37,14 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    images: "https://valentinjadot.com/og-image.png",
+    card: "summary_large_image",
+    site: "https://valentinjadot.com",
+    creator: "@jadorowski",
+    title: "Valentin Jadot",
+    description: "creative coder",
+  },
 };
 
 export default function RootLayout({
@@ -49,7 +58,9 @@ export default function RootLayout({
         className={inter.className}
         style={{ width: "100vw", height: "100vh", margin: 0 }}
       >
-        <main>{children}</main>
+        <main>
+          <CurrentUserProvider>{children}</CurrentUserProvider>
+        </main>
       </body>
     </html>
   );
