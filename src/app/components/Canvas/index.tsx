@@ -24,7 +24,7 @@ function Canvas(props: IProps): JSX.Element {
   const startInactivityTimer = () => {
     inactivityTimer.current = setTimeout(() => {
       setIsUserInteracting(false);
-    }, 300);
+    }, 500);
   };
 
   const stopInactivityTimer = () => {

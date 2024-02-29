@@ -51,15 +51,15 @@ function Universe(props: IProps): JSX.Element {
       <Model />
       <OrbitControls
         ref={orbitRef}
-        zoomSpeed={0.009}
+        zoomSpeed={0.015}
         enableZoom
         enablePan
         enableDamping
         autoRotateSpeed={0.1}
         dampingFactor={0.08}
         maxPolarAngle={Math.PI}
-        panSpeed={0.005}
-        rotateSpeed={0.005}
+        panSpeed={0.009}
+        rotateSpeed={0.009}
         target={
           checkpoint ? checkpoint.current.target : initialCheckpoint.target
         }
