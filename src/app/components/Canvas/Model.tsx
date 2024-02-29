@@ -10,9 +10,7 @@ function Model(): JSX.Element {
     PLYLoader,
     "val-11mb.ply",
     undefined,
-    (progressEvent) => {
-      console.log(Math.floor(progressEvent.loaded / progressEvent.total) * 100);
-    }
+    (progressEvent) => {}
   );
 
   const meshRef = useRef<THREE.Points>(null);
