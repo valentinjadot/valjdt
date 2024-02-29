@@ -8,6 +8,7 @@ import { formatInitialQuestion } from "./formatInitialQuestion";
 import { useCurrentUser } from "@/contexts/CurrentUserContext";
 import { useConversationLogger } from "@/components/Chat/useConversationLogger";
 import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Page({
   params,
@@ -16,7 +17,7 @@ export default function Page({
 }) {
   const currentUser = useCurrentUser();
 
-  const [conversationUUID] = useState<string>(crypto.randomUUID());
+  const [conversationUUID] = useState<string>(uuidv4());
   const [readyToLog, setReadyToLog] = useState<boolean>(false);
 
   const { logConversationMessages } = useConversationLogger(

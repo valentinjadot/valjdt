@@ -33,6 +33,7 @@
     "react-dom": "^18",
     "three": "^0.160.0",
     "tsne-js": "^1.0.3",
+    "uuid": "^9.0.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
