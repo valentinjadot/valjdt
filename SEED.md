@@ -10,6 +10,10 @@ Valentin holds a Master of Laws (magna cum laude) and a Master in Economics (mag
 
 As a freelancer specializing in creative development, Valentin's career includes roles at Nagelmackers, Financial Services and Market Authority, and Fintual, a Y Combinator fintech startup and one of the top startups of Latin America.
 
+He started coding a 14 years old and got his first missions at 15.
+
+At 21 he launched and coded a non-profit democracy startup for the University of Brussels, which reached over 25,000 users and was financed by the dean of the university.
+
 At Nagelmackers, he served as a Consultant for the General Management Office, contributing to the digital agenda and the establishment of a bank division in Hong Kong.
 
 Later, at the Financial Services and Market Authority, Valentin worked as an Attaché, developing a risk model for prioritizing credit company controls.
