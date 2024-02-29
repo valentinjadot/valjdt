@@ -54,6 +54,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          defer
+          src="https://analytics.us.umami.is/script.js"
+          data-website-id="25195557-f00e-479a-b740-c49f5dbcd325"
+        ></script>
+      </head>
       <body
         className={inter.className}
         style={{ width: "100vw", height: "100vh", margin: 0 }}
