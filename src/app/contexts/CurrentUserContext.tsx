@@ -1,6 +1,7 @@
 // contexts/CurrentUserContext.js
 "use client";
 
+import { User } from "@prisma/client";
 import { getFingerprint } from "@thumbmarkjs/thumbmarkjs";
 import React, {
   createContext,
@@ -10,35 +11,32 @@ import React, {
   PropsWithChildren,
 } from "react";
 
-const CurrentUserContext = createContext(null);
+const CurrentUserContext = createContext<User | null>(null);
 
 export function useCurrentUser() {
   return useContext(CurrentUserContext);
 }
 
 export const CurrentUserProvider = ({ children }: PropsWithChildren) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const findOrCreateUser = async () => {
+    const findOrCreateUserByFingerprint = async () => {
       const fingerprint = await getFingerprint();
 
-      console.log("Fingerprint:", fingerprint);
+      const response = await fetch("/api/user", {
+        method: "POST",
+        body: JSON.stringify({ fingerprint }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error);
 
-      try {
-        const response = await fetch("/api/user", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ fingerprint }),
-        });
-        const data = await response.json();
-        setCurrentUser(data.user);
-      } catch (error) {
-        console.error("Error fetching user:", error);
-      }
+      const user = data.user as User;
+
+      setCurrentUser(user);
     };
 
-    findOrCreateUser();
+    findOrCreateUserByFingerprint();
   }, []);
 
   return (

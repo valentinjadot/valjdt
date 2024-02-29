@@ -16,8 +16,5 @@ export const connectToPineconeIndex = async () => {
 
   const index = pinecone.index<Metadata>(env.PINECONE_INDEX_NAME);
 
-  console.log("index is");
-  console.log(index);
-
   return index;
 };

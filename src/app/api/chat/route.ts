@@ -48,10 +48,6 @@ export async function POST(req: Request) {
       },
     ];
 
-    console.log("======= start of context ======");
-    console.log("context", context);
-    console.log("======= end of context ======");
-
     // Ask OpenAI for a streaming chat completion given the prompt
     const response = await openai.createChatCompletion({
       model: "gpt-4",

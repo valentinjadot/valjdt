@@ -14,8 +14,6 @@ async function seed(seedContent: string) {
 
     const stats = await index.describeIndexStats();
 
-    console.log("Index stats:", stats);
-
     if (stats.totalRecordCount != 0) {
       throw new Error("Index was not emptied properly.");
     }
@@ -74,8 +72,6 @@ async function prepareDocument(content: string): Promise<Document[]> {
         },
       })
   );
-
-  console.log(docs);
 
   // Map over the documents and add a hash to their metadata
   return docs;

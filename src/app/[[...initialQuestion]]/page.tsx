@@ -4,30 +4,37 @@ import Canvas from "@/components/Canvas/index";
 import Chat from "@/components/Chat";
 import { useChat } from "ai/react";
 import { CAMERA_CHECKPOINTS } from "../constants";
+import { formatInitialQuestion } from "./formatInitialQuestion";
 import { useCurrentUser } from "@/contexts/CurrentUserContext";
-
-const formatInitialQuestion = (initialQuestion: string[] | undefined) => {
-  if (!initialQuestion) return "";
-
-  const sentence = initialQuestion[0].split("-").join(" ");
-  const uppercasedSentence =
-    sentence.charAt(0).toUpperCase() + sentence.slice(1);
-
-  return uppercasedSentence;
-};
+import { useConversationLogger } from "@/components/Chat/useConversationLogger";
+import { useEffect, useState } from "react";
 
 export default function Page({
   params,
 }: {
   params: { initialQuestion?: string[] };
 }) {
-  const { messages, input, handleInputChange, handleSubmit } = useChat({
-    initialInput: formatInitialQuestion(params.initialQuestion),
-  });
-
   const currentUser = useCurrentUser();
 
-  console.log(currentUser);
+  const [conversationUUID] = useState<string>(crypto.randomUUID());
+  const [readyToLog, setReadyToLog] = useState<boolean>(false);
+
+  const { logConversationMessages } = useConversationLogger(
+    currentUser,
+    conversationUUID
+  );
+  const { messages, input, handleInputChange, handleSubmit } = useChat({
+    initialInput: formatInitialQuestion(params.initialQuestion),
+    id: conversationUUID,
+    onFinish: () => setReadyToLog(true),
+  });
+
+  useEffect(() => {
+    if (messages.length > 0 && readyToLog) {
+      logConversationMessages(messages);
+      setReadyToLog(false);
+    }
+  }, [messages, logConversationMessages, conversationUUID, readyToLog]);
 
   return (
     <div
