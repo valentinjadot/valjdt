@@ -1,0 +1,54 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model User {
+  id            Int            @id @default(autoincrement())
+  fingerprint   String         @unique
+  entropy       String         @default("")
+  createdAt     DateTime       @default(now())
+  conversations Conversation[]
+
+  @@index([id], name: "idx_user_id")
+}
+
+model Conversation {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  user      User      @relation(fields: [userId], references: [id])
+  startedAt DateTime  @default(now())
+  messages  Message[]
+
+  @@index([userId], name: "idx_conversations_user_id")
+  @@index([id], name: "idx_conversation_id")
+}
+
+model Message {
+  id             Int          @id @default(autoincrement())
+  conversationId Int
+  senderId       Int
+  role           Role
+  messageText    String
+  createdAt      DateTime     @default(now())
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+
+  @@index([conversationId], name: "idx_messages_conversation_id")
+  @@index([id], name: "idx_message_id")
+}
+
+enum Role {
+  user
+  chatbot
+}
