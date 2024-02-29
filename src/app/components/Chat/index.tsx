@@ -30,22 +30,27 @@ const Chat: React.FC<Chat> = ({
     setTimeout(() => submitButtonRef.current?.click(), 2000);
   }, [hasInitialQuestion]);
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   return (
     <div id="chat" className="flex flex-col">
       <Messages messages={messages} />
 
       <>
         <form
-          onSubmit={handleMessageSubmit}
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleMessageSubmit(e);
+            inputRef.current?.blur();
+          }}
           className="fixed bottom-0 left-0 right-0 m-5"
         >
           <input
             type="text"
-            className="input-glow appearance-none border rounded-lg w-full py-2 px-3 text-xs md:text-xl text-gray-200 leading-tight focus:outline-none focus:shadow-outline pl-3 pr-10 bg-transparent border-gray-600 transition-shadow duration-200"
+            className="input-glow appearance-none border rounded-lg w-full py-2 px-3 text-s md:text-xl text-gray-200 leading-tight focus:outline-none focus:shadow-outline pl-3 pr-10 bg-transparent border-gray-600 transition-shadow duration-200"
             value={input}
             onChange={handleInputChange}
             placeholder="Any question for Valentin?"
-            autoFocus
           />
 
           <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-xs md:text-xl text-gray-400">
