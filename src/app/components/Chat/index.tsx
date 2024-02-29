@@ -47,18 +47,18 @@ const Chat: React.FC<Chat> = ({
         >
           <input
             type="text"
-            className="input-glow appearance-none border rounded-lg w-full py-2 px-3 text-s md:text-xl text-gray-200 leading-tight focus:outline-none focus:shadow-outline pl-3 pr-10 bg-transparent border-gray-600 transition-shadow duration-200"
+            className="input-glow z-0 appearance-none border rounded-lg w-full py-2 px-3 text-s md:text-xl text-gray-200 leading-tight focus:outline-none focus:shadow-outline pl-3 pr-10 bg-transparent border-gray-600 transition-shadow duration-200"
             value={input}
             onChange={handleInputChange}
             placeholder="Any question for Valentin?"
           />
 
-          <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-xs md:text-xl text-gray-400">
-            Press ⮐ to send
-          </span>
-
-          <button type="submit" className="hidden" ref={submitButtonRef}>
-            Send
+          <button
+            ref={submitButtonRef}
+            type="submit"
+            className="absolute inset-y-0 right-0 flex items-center pr-4 text-xs md:text-xl text-gray-200"
+          >
+            ⮐
           </button>
         </form>
       </>
