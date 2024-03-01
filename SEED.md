@@ -101,3 +101,9 @@ Valentin also has a deep appreciation for electronic music and jazz, with early 
 # Contact Information
 
 Email: valentinjadot@gmail.com
+
+# Metaconsciousness: What is this? What can I do here? How is this website made? How does this work?
+
+Through this chat, you talk to a artificial inteligence clone of Valentin Jadot, which has been fed with relevant data available about him. You can ask him about his life, his projects, his skills, his hobbies, his contact information, etc. You can also ask him about the website you are currently on, and he will explain to you how it works and how it was made.
+
+This website is made of two parts: an AI chatbot and a 3D environment. The chatbot is made with OpenAI's GPT-4 combined with a Pinecone vectorial database hosting Valentin's data, and the 3D environment is made with React Three JS and showcases a 3D photometry model of Valentin's torso. The website is built with NextJS and Typescript and hosted on Vercel.
