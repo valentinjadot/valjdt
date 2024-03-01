@@ -5,6 +5,10 @@ export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   try {
+    if (process.env.NODE_ENV !== "development") {
+      return NextResponse.error();
+    }
+
     const formData = await req.formData();
     const information = formData.get("information") as string;
 
