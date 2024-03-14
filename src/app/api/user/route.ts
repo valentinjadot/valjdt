@@ -2,12 +2,16 @@
 import { NextResponse } from "next/server";
 import prisma from "@/utils/prisma"; // Adjust this path to your Prisma client instance
 import { User } from "@prisma/client";
+import { geolocation, ipAddress } from "@vercel/edge";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
-export async function POST(req: Request) {
+export async function POST(request: Request) {
   try {
-    const { fingerprint } = await req.json();
+    const { fingerprint } = await request.json();
+
+    const geolocationData = geolocation(request);
+    const ipData = ipAddress(request);
 
     // Find or create user
     const user: User = await prisma.user.upsert({
@@ -15,6 +19,11 @@ export async function POST(req: Request) {
       update: {},
       create: {
         fingerprint,
+        entropy: JSON.stringify({
+          ipFromHeader: request.headers.get("X-Forwarded-For"),
+          ipData,
+          geolocationData,
+        }),
       },
     });
 

@@ -24,6 +24,7 @@
     "@thumbmarkjs/thumbmarkjs": "^0.13.5",
     "@types/lodash": "^4.14.202",
     "@types/three": "^0.160.0",
+    "@vercel/edge": "^1.1.1",
     "ai": "^2.2.22",
     "lodash": "^4.17.21",
     "md5": "^2.3.0",
