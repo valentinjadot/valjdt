@@ -16,6 +16,11 @@ const nextConfig = {
           "https://valentinjadot.notion.site/Mapa-introducci-n-c9396c40ce994795982e63afd8b46636?pvs=4",
         permanent: true,
       },
+      {
+        source: "/que-moto-teni",
+        destination: "https://en.wikipedia.org/wiki/KTM_990_Adventure",
+        permanent: true,
+      },
     ];
   },
 };
