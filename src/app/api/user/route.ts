@@ -13,17 +13,21 @@ export async function POST(request: Request) {
     const geolocationData = geolocation(request);
     const ipData = ipAddress(request);
 
+    const entropy = JSON.stringify({
+      ipFromHeader: request.headers.get("X-Forwarded-For"),
+      ipData,
+      geolocationData,
+    });
+
     // Find or create user
     const user: User = await prisma.user.upsert({
       where: { fingerprint },
-      update: {},
+      update: {
+        entropy,
+      },
       create: {
         fingerprint,
-        entropy: JSON.stringify({
-          ipFromHeader: request.headers.get("X-Forwarded-For"),
-          ipData,
-          geolocationData,
-        }),
+        entropy,
       },
     });
 
