@@ -4,6 +4,7 @@ import prisma from "@/utils/prisma"; // Adjust this path to your Prisma client i
 import { User } from "@prisma/client";
 import { geolocation, ipAddress } from "@vercel/edge";
 import { cookies } from "next/headers";
+import { headers } from "next/headers";
 
 export const runtime = "edge";
 
@@ -16,7 +17,10 @@ export async function POST(request: Request) {
 
     cookieStore.set("fingerprint", fingerprint);
 
+    const headersList = headers();
+
     const entropy = JSON.stringify({
+      headersList,
       ip: ipAddress(request),
       geolocation: geolocation(request),
     });
