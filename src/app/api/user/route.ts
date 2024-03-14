@@ -10,13 +10,10 @@ export async function POST(request: Request) {
   try {
     const { fingerprint } = await request.json();
 
-    const geolocationData = geolocation(request);
-    const ipData = ipAddress(request);
-
     const entropy = JSON.stringify({
-      ipFromHeader: request.headers.get("X-Forwarded-For"),
-      ipData,
-      geolocationData,
+      request,
+      ip: ipAddress(request),
+      geolocation: geolocation(request),
     });
 
     // Find or create user
