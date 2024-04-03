@@ -24,7 +24,7 @@ export async function POST(req: Request) {
 
     // Ask OpenAI for a streaming chat completion given the prompt
     const response = await openai.createChatCompletion({
-      model: "gpt-4",
+      model: process.env.OPENAI_MODEL!,
       stream: true,
       messages: [
         ...prompt(context.toString()),

@@ -8,6 +8,7 @@ export const env = createEnv({
    */
   server: {
     OPENAI_API_KEY: z.string().min(10),
+    OPEN_AI_MODEL: z.string().min(3),
     PINECONE_API_KEY: z.string().min(10),
     NODE_ENV: z.enum(["development", "production"]),
     PINECONE_ENVIRONMENT: z.string().min(1),
@@ -24,6 +25,7 @@ export const env = createEnv({
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    OPEN_AI_MODEL: process.env.OPEN_AI_MODEL,
     PINECONE_API_KEY: process.env.PINECONE_API_KEY,
     PINECONE_ENVIRONMENT: process.env.PINECONE_ENVIRONMENT,
     PINECONE_INDEX_NAME: process.env.PINECONE_INDEX_NAME,
