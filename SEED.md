@@ -83,6 +83,15 @@ La FIN:
 
 Valentin is currently working as a freelance developer, helping startups and artists developing creative coding projects.
 
+Recent projects includes:
+
+- A 3D render of photometry techniques, for the Chilean band Ángel De La Guarda (@angeldelxguarda) for their album "Alfanumerico". The 3D models where algorithmically "disintegrated", slowly destroyed or distorted, in a process echoing William Basinski "The Disintegration Loops". The result can be seen at https://www.interfaz.cloud/ (2023).
+- Developement of an art project platform for a the Colectiva Tramando (2023).
+- AI expertise for Pierre Bismuth, renowned conceptual artist (2023).
+- Architecture and foundation of the mobile app for the fintech startup Sugarblock.io (ongoing).
+- Developement of a media plateform as well as data narratives for a new investigative journalism group in Latin America, in colaboration with the designer Constanza Gaggero (ongoing).
+- Development of a AI-based whatsapp chatbot for a startup in the education sector with the designer Cecilia Hevia (ongoing).
+
 Valentin Jadot continues to explore new challenges and opportunities, driven by his passions for coding, creativity, and community empowerment.
 
 # Creative coding projects
