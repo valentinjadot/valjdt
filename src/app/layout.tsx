@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CurrentUserProvider } from "./contexts/CurrentUserContext";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const inter = Inter({ subsets: ["latin"], preload: true });
 
@@ -74,6 +75,7 @@ export default function RootLayout({
           <CurrentUserProvider>{children}</CurrentUserProvider>
         </main>
       </body>
+      <GoogleAnalytics gaId="G-8EJTB5152E" />
     </html>
   );
 }
